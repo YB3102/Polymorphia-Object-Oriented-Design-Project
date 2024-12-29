@@ -1,0 +1,67 @@
+plugins {
+    id 'java'
+    id 'groovy'
+}
+
+group = 'csci.ooad'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'ch.qos.logback:logback-classic:1.4.14'
+
+    // Maze display
+    implementation files('libs/csci4448.gameLayout-2.0.0.jar')
+
+    // Library to speak strings: Free Text-To-Speech
+    implementation 'net.sf.sociaal:freetts:1.2.2'
+
+    // JUnit Jupiter for testing
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.0'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+    // Cucumber BDD libraries
+    testImplementation 'io.cucumber:cucumber-picocontainer:7.8.0'
+    testImplementation 'io.cucumber:cucumber-java:7.8.0'
+    testImplementation 'io.cucumber:cucumber-junit:7.8.0'
+
+    // Only include cucumber-groovy if you need it and with an available version:
+    // Uncomment the line below if needed, but note it may not have the same version.
+    // testImplementation 'io.cucumber:cucumber-groovy:6.10.4'
+
+    // Groovy
+    testImplementation 'org.apache.groovy:groovy:4.0.23'
+    testImplementation 'io.cucumber:cucumber-junit-platform-engine:7.20.1'
+
+    implementation 'commons-cli:commons-cli:1.6.0'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+configurations {
+    cucumberRuntime {
+        extendsFrom testImplementation
+    }
+}
+
+tasks.register('cucumberCli') {
+    dependsOn assemble, testClasses
+    doLast {
+        javaexec {
+            mainClass = "io.cucumber.core.cli.Main"
+            classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
+            args = [
+                    '--plugin', 'pretty',
+                    '--plugin', 'html:target/cucumber-report.html',
+                    '--snippets', 'camelcase',
+                    '--glue', 'csci.ooad.polymorphia.stepdefs',
+                    'src/test/resources/features'
+            ]
+        }
+    }
+}

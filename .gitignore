@@ -1,0 +1,33 @@
+# Ignore Gradle build directories
+.gradle/
+build/
+
+# Ignore IDE specific files (for IntelliJ IDEA or Android Studio)
+.idea/
+*.iml
+
+# Ignore gradle wrapper files
+gradle/wrapper/
+
+# Ignore log files
+*.log
+
+# Ignore OS generated files
+.DS_Store
+Thumbs.db
+git
+
+# Ignore temporary files
+*.swp
+*.tmp
+*.bak
+
+# Ignore the gradle wrapper script if you don’t want to version control it
+gradlew
+gradlew.bat
+
+# Optional: Ignore IDE-specific files like workspace configurations (adjust based on your setup)
+.vscode/
+.idea/
+
+*.hprof
