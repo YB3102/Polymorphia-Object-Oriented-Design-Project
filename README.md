@@ -54,7 +54,7 @@ Additionally, behavior-driven development (BDD) scenarios are implemented using 
 ## Getting Started
 
 ### Prerequisites
-1. **Java Development Kit (JDK):** Ensure you have JDK 11 or higher installed.
+1. **Java Development Kit (JDK):** Ensure you have specifically JDK 21.
 2. **Gradle:** Used for managing project dependencies and builds.
 3. **IntelliJ IDEA:** Recommended IDE for development and running tests.
 
@@ -64,7 +64,7 @@ Additionally, behavior-driven development (BDD) scenarios are implemented using 
 1. Clone the repository:
    ```bash
    git clone <repository-url>
-   cd polymorphia
+   cd Polymorphia-Object-Oriented-Design-Project
    ```
 2. Open the project in IntelliJ IDEA.
 3. Ensure all dependencies are resolved using Gradle.
